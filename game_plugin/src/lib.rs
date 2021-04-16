@@ -1,18 +1,14 @@
-mod actions;
-mod audio;
-mod loading;
-mod menu;
-mod player;
+#![allow(unused_imports)]
+#![allow(dead_code)]
+#![allow(unused_variables)]
 
-use crate::actions::ActionsPlugin;
-use crate::audio::InternalAudioPlugin;
-use crate::loading::LoadingPlugin;
-use crate::menu::MenuPlugin;
-use crate::player::PlayerPlugin;
-
-use bevy::app::AppBuilder;
+use bevy::{app::AppBuilder, input::system::exit_on_esc_system};
 // use bevy::diagnostic::{FrameTimeDiagnosticsPlugin, LogDiagnosticsPlugin};
 use bevy::prelude::*;
+
+
+mod scoreboard;
+use scoreboard::Scoreboard;
 
 #[derive(Clone, Eq, PartialEq, Debug, Hash)]
 enum GameState {
@@ -25,14 +21,18 @@ pub struct GamePlugin;
 
 impl Plugin for GamePlugin {
     fn build(&self, app: &mut AppBuilder) {
-        app.add_state(GameState::Loading)
-            .add_plugin(LoadingPlugin)
-            .add_plugin(ActionsPlugin)
-            .add_plugin(MenuPlugin)
-            .add_plugin(InternalAudioPlugin)
-            .add_plugin(PlayerPlugin)
+        app
+            .insert_resource(Scoreboard(0))
+            .add_startup_system(setup.system())
+            .add_state(GameState::Loading)
+            .add_system(exit_on_esc_system.system())
             // .add_plugin(FrameTimeDiagnosticsPlugin::default())
             // .add_plugin(LogDiagnosticsPlugin::default())
             ;
     }
+}
+
+
+fn setup(mut commands: Commands) {
+    commands.spawn_bundle(OrthographicCameraBundle::new_2d());
 }

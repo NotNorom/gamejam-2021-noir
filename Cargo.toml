@@ -1,7 +1,7 @@
 [package]
-name = "bevy_game" # ToDo
+name = "gamejam-2021-noir"
 version = "0.1.0"
-authors = ["Niklas Eicker <git@nikl.me>"] # ToDo: you are the author ;)
+authors = ["Andre Julius <noromoron@gmail.com>"]
 edition = "2018"
 
 [profile.dev]
