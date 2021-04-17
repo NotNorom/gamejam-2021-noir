@@ -8,13 +8,18 @@ use bevy::prelude::*;
 
 
 mod scoreboard;
+use fps_counter::{fps_counter_update_system, setup_fps_counter};
 use scoreboard::Scoreboard;
+
+mod fps_counter;
 
 #[derive(Clone, Eq, PartialEq, Debug, Hash)]
 enum GameState {
     Loading,
+    StartAndScoreMenu,
+    InstructionMenu,
     Playing,
-    Menu,
+    GameOver,
 }
 
 pub struct GamePlugin;
@@ -24,8 +29,10 @@ impl Plugin for GamePlugin {
         app
             .insert_resource(Scoreboard(0))
             .add_startup_system(setup.system())
+            .add_startup_system(setup_fps_counter.system())
             .add_state(GameState::Loading)
             .add_system(exit_on_esc_system.system())
+            .add_system(fps_counter_update_system.system())
             // .add_plugin(FrameTimeDiagnosticsPlugin::default())
             // .add_plugin(LogDiagnosticsPlugin::default())
             ;
@@ -33,6 +40,7 @@ impl Plugin for GamePlugin {
 }
 
 
-fn setup(mut commands: Commands) {
+fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn_bundle(OrthographicCameraBundle::new_2d());
+    commands.spawn_bundle(UiCameraBundle::default());
 }
