@@ -6,7 +6,7 @@ use bevy::{
 pub struct FpsText;
 
 const FONT_SIZE: f32 = 14.0;
-const COLOR: Color = Color::hsla(0.0, 0.0, 1.0, 0.5);
+const COLOR: Color = Color::hsla(90.0, 1.0, 0.5, 0.5);
 
 
 // spawn text
