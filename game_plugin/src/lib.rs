@@ -34,12 +34,20 @@ impl Plugin for GamePlugin {
         app
             //.insert_resource(Scoreboard(0))
             .add_startup_system(setup.system())
+            // shading shit
+            .add_startup_system(setup_render_graph.system())
+            .add_system(update_time.system())
+            .add_system(update_resolution.system())
+            // background shit
             .add_startup_system(setup_background_shader.system())
             .add_system(update_background_size.system())
+
             .add_startup_system(setup_fps_counter.system())
             //.add_state(GameState::Loading)
+
             .add_system(exit_on_esc_system.system())
             .add_system(fps_counter_update_system.system())
+
             // .add_plugin(FrameTimeDiagnosticsPlugin::default())
             // .add_plugin(LogDiagnosticsPlugin::default())
             ;
