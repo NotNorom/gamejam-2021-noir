@@ -10,9 +10,11 @@ use bevy::render::{
 use bevy::{app::AppBuilder, input::system::exit_on_esc_system};
 // use bevy::diagnostic::{FrameTimeDiagnosticsPlugin, LogDiagnosticsPlugin};
 use bevy::prelude::*;
-use bevy_prototype_lyon::prelude::*;
+use bevy_prototype_lyon::prelude::ShapePlugin;
 
 mod consts;
+mod fanta;
+use fanta::FantaPlugin;
 use consts::*;
 mod background;
 //mod time;
@@ -42,12 +44,13 @@ impl Plugin for GamePlugin {
             // .add_system(update_background_size.system())
 
             .add_startup_system(setup_fps_counter.system())
+            .add_system(fps_counter_update_system.system())
 
             .add_system(exit_on_esc_system.system())
-            .add_system(fps_counter_update_system.system())
 
             .add_plugin(UIPlugin)
             .add_plugin(ShapePlugin)
+            .add_plugin(FantaPlugin)
 
             // .add_plugin(FrameTimeDiagnosticsPlugin::default())
             // .add_plugin(LogDiagnosticsPlugin::default())
@@ -61,21 +64,4 @@ fn setup(mut commands: Commands) {
         .spawn_bundle(OrthographicCameraBundle::new_2d())
         .commands()
         .spawn_bundle(UiCameraBundle::default());
-
-    let shape = shapes::RegularPolygon {
-        sides: 6,
-        feature: shapes::RegularPolygonFeature::Radius(30.0),
-        ..shapes::RegularPolygon::default()
-    };
-
-    info!("Setting up shapes");
-    commands.spawn_bundle(GeometryBuilder::build_as(
-        &shape,
-        ShapeColors::outlined(Color::hsla(0.0, 0.0, 0.0, 0.0), Color::WHITE),
-        DrawMode::Outlined {
-            fill_options: FillOptions::default(),
-            outline_options: StrokeOptions::default().with_line_width(4.0),
-        },
-        Transform::default(),
-    ));
 }
