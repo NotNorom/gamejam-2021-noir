@@ -1,10 +1,11 @@
-// disable console opening on windows
-#![windows_subsystem = "windows"]
+// set to  windows to windows
+// set to console to see logs!!!
+#![windows_subsystem = "console"]
 
 #[cfg(target_arch = "wasm32")]
 use bevy_webgl2;
 
-// use bevy::diagnostic::LogDiagnosticsPlugin;
+use bevy::diagnostic::LogDiagnosticsPlugin;
 use bevy::DefaultPlugins;
 use bevy::{
     diagnostic::FrameTimeDiagnosticsPlugin,
@@ -26,7 +27,7 @@ fn main() {
         })
         .add_plugins(DefaultPlugins)
         .add_plugin(FrameTimeDiagnosticsPlugin::default())
-        //.add_plugin(LogDiagnosticsPlugin)
+        .add_plugin(LogDiagnosticsPlugin::default())
         .add_plugin(GamePlugin);
 
     #[cfg(target_arch = "wasm32")]
