@@ -16,7 +16,7 @@ fn spawn_decoys(
 ) {
     let shape = shapes::RegularPolygon {
         sides: 6,
-        feature: shapes::RegularPolygonFeature::Radius(30.0),
+        feature: shapes::RegularPolygonFeature::Radius(FANTA_SIZE),
         ..shapes::RegularPolygon::default()
     };
 
@@ -28,7 +28,7 @@ fn spawn_decoys(
             ShapeColors::outlined(FANTA_DECOY_FILL_COLOR, FANTA_DECOY_OUTLINE_COLOR),
             DrawMode::Outlined {
                 fill_options: FillOptions::default(),
-                outline_options: StrokeOptions::default().with_line_width(4.0),
+                outline_options: StrokeOptions::default().with_line_width(FANTA_SIZE / 10.0),
             },
             Transform::from_xyz(coords.0, coords.1, 0.0),
         ))
@@ -44,7 +44,7 @@ fn spawn_decoys(
             ShapeColors::outlined(FANTA_TARGET_FILL_COLOR, FANTA_TARGET_OUTLINE_COLOR),
             DrawMode::Outlined {
                 fill_options: FillOptions::default(),
-                outline_options: StrokeOptions::default().with_line_width(4.0),
+                outline_options: StrokeOptions::default().with_line_width(FANTA_SIZE / 10.0),
             },
             Transform::from_xyz(coords.0, coords.1, 0.0),
         ))

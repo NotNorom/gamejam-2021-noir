@@ -12,6 +12,9 @@ pub const DEFAULT_TEXT_FONT: &str = "fonts/FiraMono-Regular.ttf";
 // Fanta configuration
 // Yes I call them fanta, because they are not sprites
 
+pub const FANTA_SIZE: f32 = 20.0;
+pub const FANTA_SPEED: f32 = 20.0;
+
 /// number of decoys to spawn
 pub const FANTA_DECOY_COUNT: u32 = 10;
 pub const FANTA_TARGET_COUNT: u32 = 1;
@@ -23,6 +26,7 @@ pub const FANTA_DECOY_OUTLINE_COLOR: Color = Color::hsla(0.0, 0.0, 1.0, 1.0);
 // target colors
 pub const FANTA_TARGET_FILL_COLOR: Color = Color::hsla(0.0, 0.0, 0.0, 0.0);
 pub const FANTA_TARGET_OUTLINE_COLOR: Color = Color::hsla(0.0, 1.0, 0.5, 1.0);
+
 
 /// a border where assets are allowed to spawn in
 pub const GAME_AREA_PADDING: f32 = 60.0;
