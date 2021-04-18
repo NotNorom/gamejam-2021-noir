@@ -18,11 +18,12 @@ fn main() {
     app.insert_resource(Msaa { samples: 4 })
         .insert_resource(ClearColor(Color::rgb(0.0, 0.0, 0.0)))
         .insert_resource(WindowDescriptor {
-            width: 800.,
-            height: 600.,
+            width: 1280.0,
+            height: 720.0,
             title: "gamejam-2021-noir floating".to_string(),
             vsync: true,
-            // mode: bevy::window::WindowMode::BorderlessFullscreen,
+            resizable: false,
+            //mode: bevy::window::WindowMode::Fullscreen {use_size: false},
             ..Default::default()
         })
         .add_plugins(DefaultPlugins)
