@@ -6,6 +6,7 @@ pub const SCORE_TEXT_COLOR: Color = Color::hsla(0.0, 0.0, 1.0, 0.9);
 pub const FPS_TEXT_SIZE: f32 = 14.0;
 pub const FPS_TEXT_COLOR: Color = Color::hsla(90.0, 1.0, 0.5, 0.9);
 
+pub const DEFAULT_TEXT_FONT: &str = "fonts/FiraMono-Regular.ttf";
 /// States
 #[derive(Clone, Eq, PartialEq, Debug, Hash)]
 pub enum AppState {

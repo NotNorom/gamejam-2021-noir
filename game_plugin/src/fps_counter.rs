@@ -28,7 +28,7 @@ pub fn setup_fps_counter(mut commands: Commands, asset_server: Res<AssetServer>)
                     TextSection {
                         value: "FPS: ".to_string(),
                         style: TextStyle {
-                            font: asset_server.load("fonts/FiraMono-Regular.ttf"),
+                            font: asset_server.load(DEFAULT_TEXT_FONT),
                             font_size: FPS_TEXT_SIZE,
                             color: FPS_TEXT_COLOR,
                         },
@@ -36,7 +36,7 @@ pub fn setup_fps_counter(mut commands: Commands, asset_server: Res<AssetServer>)
                     TextSection {
                         value: "".to_string(),
                         style: TextStyle {
-                            font: asset_server.load("fonts/FiraMono-Regular.ttf"),
+                            font: asset_server.load(DEFAULT_TEXT_FONT),
                             font_size: FPS_TEXT_SIZE,
                             color: FPS_TEXT_COLOR,
                         },

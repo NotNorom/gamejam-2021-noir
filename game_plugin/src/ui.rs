@@ -23,7 +23,7 @@ fn setup_ui(
                 TextSection {
                     value: "SCORE: ".to_string(),
                     style: TextStyle {
-                        font: asset_server.load("fonts/FiraMono-Regular.ttf"),
+                        font: asset_server.load(DEFAULT_TEXT_FONT),
                         font_size: SCORE_TEXT_SIZE,
                         color: SCORE_TEXT_COLOR,
                     },
@@ -31,7 +31,7 @@ fn setup_ui(
                 TextSection {
                     value: "0".to_string(),
                     style: TextStyle {
-                        font: asset_server.load("fonts/FiraMono-Regular.ttf"),
+                        font: asset_server.load(DEFAULT_TEXT_FONT),
                         font_size: SCORE_TEXT_SIZE,
                         color: SCORE_TEXT_COLOR,
                     },
