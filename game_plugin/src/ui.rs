@@ -48,7 +48,7 @@ fn setup_ui(
 struct ScoreText;
 fn update_score_text(
     score: Res<ScoreResource>,
-    mut query: Query<(&mut Text, &ScoreText)>
+    query: Query<(&mut Text, &ScoreText)>
 ) {
     // don't do shit if there is no change to the score
     if !score.is_changed() {
@@ -56,9 +56,9 @@ fn update_score_text(
     }
 
     // update score text
-    for (mut text, _marker) in query.iter_mut() {
+    query.for_each_mut(|(mut text, _marker)| {
         text.sections[1].value = format!("{}", score.score());
-    }
+    });
 }
 
 

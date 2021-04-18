@@ -52,14 +52,14 @@ pub fn setup_fps_counter(mut commands: Commands, asset_server: Res<AssetServer>)
 // update text
 pub fn fps_counter_update_system(
     diagnostics: Res<Diagnostics>,
-    mut query: Query<&mut Text, With<FpsText>>,
+    query: Query<&mut Text, With<FpsText>>,
 ) {
-    for mut text in query.iter_mut() {
-        if let Some(fps) = diagnostics.get(FrameTimeDiagnosticsPlugin::FPS) {
-            if let Some(average) = fps.average() {
+    if let Some(fps) = diagnostics.get(FrameTimeDiagnosticsPlugin::FPS) {
+        if let Some(average) = fps.average() {
+            query.for_each_mut(|mut text| {
                 // Update the value of the second section
                 text.sections[1].value = format!("{:.2}", average);
-            }
+            });
         }
     }
 }
