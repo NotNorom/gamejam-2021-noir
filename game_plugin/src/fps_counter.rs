@@ -1,3 +1,5 @@
+use crate::consts::*;
+
 use bevy::{
     diagnostic::{Diagnostics, FrameTimeDiagnosticsPlugin},
     prelude::*,
@@ -5,16 +7,18 @@ use bevy::{
 
 pub struct FpsText;
 
-const FONT_SIZE: f32 = 14.0;
-const COLOR: Color = Color::hsla(90.0, 1.0, 0.5, 0.5);
-
-
 // spawn text
 pub fn setup_fps_counter(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands
         .spawn_bundle(TextBundle {
             style: Style {
-                align_self: AlignSelf::FlexEnd, // top left
+                position_type: PositionType::Absolute,
+                position: Rect {
+                    left: Val::Px(2.0),
+                    top: Val::Px(2.0),
+                    ..Default::default()
+                },
+                //align_self: AlignSelf::FlexEnd, // top left
                 ..Default::default()
             },
             // Use `Text` directly
@@ -25,16 +29,16 @@ pub fn setup_fps_counter(mut commands: Commands, asset_server: Res<AssetServer>)
                         value: "FPS: ".to_string(),
                         style: TextStyle {
                             font: asset_server.load("fonts/FiraMono-Regular.ttf"),
-                            font_size: FONT_SIZE,
-                            color: COLOR,
+                            font_size: FPS_TEXT_SIZE,
+                            color: FPS_TEXT_COLOR,
                         },
                     },
                     TextSection {
                         value: "".to_string(),
                         style: TextStyle {
                             font: asset_server.load("fonts/FiraMono-Regular.ttf"),
-                            font_size: FONT_SIZE,
-                            color: COLOR,
+                            font_size: FPS_TEXT_SIZE,
+                            color: FPS_TEXT_COLOR,
                         },
                     },
                 ],
@@ -44,7 +48,6 @@ pub fn setup_fps_counter(mut commands: Commands, asset_server: Res<AssetServer>)
         })
         .insert(FpsText);
 }
-
 
 // update text
 pub fn fps_counter_update_system(
