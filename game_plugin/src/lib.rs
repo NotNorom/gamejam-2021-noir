@@ -12,6 +12,8 @@ use bevy::{app::AppBuilder, input::system::exit_on_esc_system};
 use bevy::prelude::*;
 use bevy_prototype_lyon::prelude::ShapePlugin;
 
+mod camera;
+use camera::CameraPlugin;
 mod consts;
 mod fanta;
 use fanta::FantaPlugin;
@@ -48,6 +50,7 @@ impl Plugin for GamePlugin {
 
             .add_system(exit_on_esc_system.system())
 
+            .add_plugin(CameraPlugin)
             .add_plugin(UIPlugin)
             .add_plugin(ShapePlugin)
             .add_plugin(FantaPlugin)
@@ -58,10 +61,4 @@ impl Plugin for GamePlugin {
     }
 }
 
-fn setup(mut commands: Commands) {
-    info!("Setting up cameras");
-    commands
-        .spawn_bundle(OrthographicCameraBundle::new_2d())
-        .commands()
-        .spawn_bundle(UiCameraBundle::default());
-}
+
