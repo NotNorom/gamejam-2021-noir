@@ -39,7 +39,6 @@ impl Plugin for GamePlugin {
         app
             .init_resource::<ScoreResource>()
             //.insert_resource(Scoreboard(0))
-            .add_startup_system(setup.system())
             // shading shit
             // .add_startup_system(setup_render_graph.system())
             // .add_system(update_time.system())
