@@ -1,8 +1,7 @@
-use std::ops::Deref;
 use std::fmt::Display;
+use std::ops::Deref;
 
 use bevy::prelude::*;
-
 
 /// The location of the mouse in screenspace.
 #[derive(Clone, Copy, PartialEq, PartialOrd, Default, Debug)]
@@ -21,7 +20,6 @@ impl Display for MousePos {
     }
 }
 
-
 fn update_mouse_position(
     mut cursor_move_events: EventReader<CursorMoved>,
     mut mouse_pos: ResMut<MousePos>,
@@ -34,6 +32,7 @@ fn update_mouse_position(
 pub struct MousePosPlugin;
 impl Plugin for MousePosPlugin {
     fn build(&self, app: &mut AppBuilder) {
-        app.init_resource::<MousePos>().add_system(update_mouse_position.system());
+        app.init_resource::<MousePos>()
+            .add_system(update_mouse_position.system());
     }
 }

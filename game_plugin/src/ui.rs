@@ -3,11 +3,7 @@ use crate::{consts::*, score::ScoreResource};
 
 use bevy::prelude::*;
 
-
-fn setup_ui(
-    mut commands: Commands,
-    asset_server: ResMut<AssetServer>,
-) {
+fn setup_ui(mut commands: Commands, asset_server: ResMut<AssetServer>) {
     commands.spawn_bundle(TextBundle {
         style: Style {
             position_type: PositionType::Absolute,
@@ -43,13 +39,8 @@ fn setup_ui(
     });
 }
 
-
-
 struct ScoreText;
-fn update_score_text(
-    score: Res<ScoreResource>,
-    query: Query<(&mut Text, &ScoreText)>
-) {
+fn update_score_text(score: Res<ScoreResource>, query: Query<(&mut Text, &ScoreText)>) {
     // don't do shit if there is no change to the score
     if !score.is_changed() {
         return;
@@ -60,7 +51,6 @@ fn update_score_text(
         text.sections[1].value = format!("{}", score.score());
     });
 }
-
 
 pub struct UIPlugin;
 impl Plugin for UIPlugin {

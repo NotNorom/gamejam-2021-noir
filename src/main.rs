@@ -5,6 +5,7 @@
 #[cfg(target_arch = "wasm32")]
 use bevy_webgl2;
 
+//use bevy::ecs::schedule::ReportExecutionOrderAmbiguities;
 use bevy::diagnostic::LogDiagnosticsPlugin;
 use bevy::DefaultPlugins;
 use bevy::{
@@ -26,6 +27,7 @@ fn main() {
             //mode: bevy::window::WindowMode::Fullscreen {use_size: false},
             ..Default::default()
         })
+        //.insert_resource(ReportExecutionOrderAmbiguities)
         .add_plugins(DefaultPlugins)
         .add_plugin(FrameTimeDiagnosticsPlugin::default())
         .add_plugin(LogDiagnosticsPlugin::default())
