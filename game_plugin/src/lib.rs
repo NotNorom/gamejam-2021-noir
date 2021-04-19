@@ -14,6 +14,10 @@ use bevy_prototype_lyon::prelude::ShapePlugin;
 
 mod camera;
 use camera::CameraPlugin;
+
+mod mouse_pos;
+use mouse_pos::MousePosPlugin;
+
 mod consts;
 mod fanta;
 use fanta::FantaPlugin;
@@ -53,6 +57,7 @@ impl Plugin for GamePlugin {
             .add_plugin(CameraPlugin)
             .add_plugin(UIPlugin)
             .add_plugin(ShapePlugin)
+            .add_plugin(MousePosPlugin)
             .add_plugin(FantaPlugin)
 
             // .add_plugin(FrameTimeDiagnosticsPlugin::default())
