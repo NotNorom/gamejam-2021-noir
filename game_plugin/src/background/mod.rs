@@ -9,7 +9,7 @@ use bevy::reflect::TypeUuid;
 use bevy::render::renderer::RenderResources;
 
 #[derive(RenderResources, Default, TypeUuid)]
-#[uuid = "0320b9b8-b3a3-4baa-8bfa-c94008177b17"]
+#[uuid = "630e4f47-191b-47da-8f21-cb21a546151b"]
 /// Resource that will be passed to shaders
 pub struct ShaderInputs {
     time: f32,

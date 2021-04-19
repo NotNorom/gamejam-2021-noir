@@ -40,13 +40,12 @@ impl Plugin for GamePlugin {
             .init_resource::<ScoreResource>()
             //.insert_resource(Scoreboard(0))
             // shading shit
-            // .add_startup_system(setup_render_graph.system())
-            // .add_system(update_time.system())
-            // .add_system(update_resolution.system())
-            // .add_system(update_mouse_position.system())
+            .add_startup_system(setup_render_graph.system())
+            .add_system(update_time.system())
+            .add_system(update_resolution.system())
             // background shit
-            // .add_startup_system(setup_background_shader.system())
-            // .add_system(update_background_size.system())
+            .add_startup_system(setup_background_shader.system())
+            .add_system(update_background_size.system())
 
             .add_startup_system(setup_fps_counter.system())
             .add_system(fps_counter_update_system.system())
