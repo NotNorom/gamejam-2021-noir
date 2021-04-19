@@ -6,7 +6,7 @@ use bevy::prelude::*;
 
 /// The location of the mouse in screenspace.
 #[derive(Clone, Copy, PartialEq, PartialOrd, Default, Debug)]
-struct MousePos(Vec2);
+pub struct MousePos(Vec2);
 
 impl Deref for MousePos {
     type Target = Vec2;

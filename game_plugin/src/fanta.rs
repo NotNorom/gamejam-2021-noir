@@ -1,5 +1,7 @@
 use crate::consts::*;
+use crate::mouse_pos::MousePos;
 
+use bevy::input::mouse::MouseButtonInput;
 use bevy::prelude::*;
 use bevy_prototype_lyon::prelude::*;
 use rand::Rng;
@@ -53,6 +55,16 @@ fn spawn_decoys(
     }
 }
 
+fn click_system(
+    mut mouse_button_input_events: EventReader<MouseButtonInput>,
+    fantas: Query<&Fanta>,
+    mouse_pos: Res<MousePos>,
+) {
+    for click_event in mouse_button_input_events.iter() {
+        println!("{:?} @ {:?}", click_event, *mouse_pos);
+    }
+}
+
 /// generate random coords between height and width
 /// note: assumes that (0, 0) is in the center
 fn random_coords(width: f32, height: f32, padding: f32) -> (f32, f32) {
@@ -66,5 +78,6 @@ pub struct FantaPlugin;
 impl Plugin for FantaPlugin {
     fn build(&self, app: &mut AppBuilder) {
         app.add_startup_system(spawn_decoys.system());
+        app.add_system(click_system.system());
     }
 }
